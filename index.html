@@ -377,6 +377,57 @@
     color: var(--ink-soft);
     margin-bottom: 30px;
   }
+  /* ---------- Contact Modal ---------- */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(27,31,42,0.55);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open {
+    display: flex;
+  }
+  .modal-card {
+    background: var(--paper-raised);
+    border-radius: 8px;
+    padding: 36px 32px 28px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 30px 60px -12px rgba(27,31,42,0.4);
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--ink-soft);
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+  .modal-close:hover {
+    color: var(--ink);
+  }
+  .modal-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+  .modal-card .contact-form {
+    max-width: none;
+    margin: 0;
+  }
+
   .contact-form {
     max-width: 520px;
     margin: 36px auto 0;
@@ -639,6 +690,15 @@
   <div class="wrap">
     <h2>Let's get your page looking like it's yours.</h2>
     <p>No pressure, no tech talk — just tell me what you've got.</p>
+    <button type="button" class="btn btn-primary" id="open-contact-modal">Send a message</button>
+    <div class="contact-note">Or reach me directly at <code>hello@freshslateweb.com</code></div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="contact-modal-overlay">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="close-contact-modal" aria-label="Close">&times;</button>
+    <h3 class="modal-title">Tell me what you've got</h3>
 
     <form class="contact-form" action="https://formspree.io/f/xrenjzde" method="POST">
       <input type="hidden" name="_subject" value="New Fresh Slate inquiry">
@@ -680,10 +740,8 @@
 
       <button type="submit" class="btn btn-primary">Send a message</button>
     </form>
-
-    <div class="contact-note">Or reach me directly at <code>hello@freshslateweb.com</code></div>
   </div>
-</section>
+</div>
 
 <footer>
   Fresh Slate — website refreshes &amp; one-link hubs
@@ -732,6 +790,30 @@
 
   carousel.addEventListener('mouseenter', stop);
   carousel.addEventListener('mouseleave', start);
+})();
+
+(function() {
+  const openBtn = document.getElementById('open-contact-modal');
+  const closeBtn = document.getElementById('close-contact-modal');
+  const overlay = document.getElementById('contact-modal-overlay');
+
+  function open() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) close();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') close();
+  });
 })();
 </script>
 </body>
