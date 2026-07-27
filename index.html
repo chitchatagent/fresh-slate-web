@@ -377,6 +377,55 @@
     color: var(--ink-soft);
     margin-bottom: 30px;
   }
+  .contact-form {
+    max-width: 520px;
+    margin: 36px auto 0;
+    text-align: left;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-field {
+    margin-bottom: 18px;
+  }
+  .form-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--brass);
+    box-shadow: 0 0 0 3px var(--brass-tint);
+  }
+  .form-field textarea {
+    resize: vertical;
+  }
+  .contact-form .btn-primary {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 6px;
+  }
+
   .contact-note {
     margin-top: 22px;
     font-size: 0.85rem;
@@ -401,6 +450,7 @@
     nav a { margin-left: 16px; }
     .hero-grid { grid-template-columns: 1fr; }
     .hero-photo-wrap { order: -1; max-width: 340px; margin: 0 auto 12px; }
+    .form-row { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -589,8 +639,49 @@
   <div class="wrap">
     <h2>Let's get your page looking like it's yours.</h2>
     <p>No pressure, no tech talk — just tell me what you've got.</p>
-    <a href="mailto:hello@freshslateweb.com" class="btn btn-primary">Send a message</a>
-    <div class="contact-note">Reach me at <code>hello@freshslateweb.com</code></div>
+
+    <form class="contact-form" action="https://formspree.io/f/xrenjzde" method="POST">
+      <input type="hidden" name="_subject" value="New Fresh Slate inquiry">
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="Name" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="Email" required>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="cf-business">What kind of business do you have?</label>
+        <input type="text" id="cf-business" name="Business type" placeholder="e.g. Barber, hair stylist, small local shop">
+      </div>
+
+      <div class="form-field">
+        <label for="cf-service">Which service are you interested in?</label>
+        <select id="cf-service" name="Service interested in">
+          <option value="Not sure yet">Not sure yet</option>
+          <option value="Website Refresh">Website Refresh</option>
+          <option value="One-Link Hub">One-Link Hub</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="cf-painpoint">What's going on with your current site or links?</label>
+        <textarea id="cf-painpoint" name="Pain point" rows="3" placeholder="e.g. My site looks outdated, or I just have separate links for booking and Instagram"></textarea>
+      </div>
+
+      <div class="form-field">
+        <label for="cf-notes">Anything else? (optional)</label>
+        <textarea id="cf-notes" name="Additional notes" rows="2"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Send a message</button>
+    </form>
+
+    <div class="contact-note">Or reach me directly at <code>hello@freshslateweb.com</code></div>
   </div>
 </section>
 
