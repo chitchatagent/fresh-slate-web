@@ -355,6 +355,12 @@
     color: var(--ink-soft);
     margin-bottom: 30px;
   }
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
   /* ---------- Contact Modal ---------- */
   .modal-overlay {
     display: none;
@@ -663,8 +669,11 @@
 <section class="cta-block" id="contact">
   <div class="wrap">
     <h2>Let's get your page looking like it's yours.</h2>
-    <p>No pressure, no tech talk — just tell me what you've got.</p>
-    <button type="button" class="btn btn-primary" id="open-contact-modal">Send a message</button>
+    <p>No pressure, no tech talk — tell me what you've got, or grab a time that works for you.</p>
+    <div class="cta-buttons">
+      <button type="button" class="btn btn-primary" id="open-contact-modal">Send a message</button>
+      <a href="https://calendly.com/dorethac/30min" class="btn btn-ghost" target="_blank" rel="noopener">Book a call</a>
+    </div>
     <div class="contact-note">Or reach me directly at <code>hello@freshslateweb.com</code> or <code><a href="tel:+14702073594">Call/Text (470) 207-3594</a></code></div>
   </div>
 </section>

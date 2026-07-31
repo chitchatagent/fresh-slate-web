@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>See Other Styles — One-Link Hub demo by Fresh Slate</title>
+<meta name="description" content="Same One-Link Hub template, reskinned in different colors — see how it adapts to different businesses and link sets.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6;--paper-raised:#FFFFFF;--ink:#1B1F2A;--ink-soft:#5B6472;
+    --brass:#B4823F;--brass-tint:#F0E4CC;--brass-deep:#8C6530;--line:#D9D2C2;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);font-family:'IBM Plex Sans',sans-serif;line-height:1.6;color:var(--ink)}
+  a{color:var(--brass-deep)}
+  a:hover{color:var(--brass)}
+
+  header{max-width:1100px;margin:0 auto;padding:26px 24px;display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
+  .wordmark{font-family:'Playfair Display',serif;font-size:26px;font-weight:700}
+  .wordmark .dot{color:var(--brass)}
+  header nav a{color:var(--ink-soft);text-decoration:none;font-size:15px}
+  header nav a:hover{color:var(--ink)}
+
+  .intro{max-width:720px;margin:0 auto;padding:56px 24px 16px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-deep)}
+  .eyebrow .rule{width:28px;height:1px;background:var(--brass)}
+  .intro h1{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(34px,4.4vw,48px);line-height:1.12;margin:16px 0 0}
+  .intro p{font-size:17px;color:var(--ink-soft);margin:16px 0 0}
+
+  .themes{max-width:1100px;margin:0 auto;padding:32px 24px 0}
+  .theme-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+  .theme-item{display:flex;flex-direction:column;gap:10px;min-width:0}
+  .theme-card{background:#F3EFE6;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06)}
+  .theme-brand{text-align:center;padding:14px 16px 10px;font-family:'Playfair Display',serif;font-size:17px;font-weight:700}
+  .theme-photo{height:150px;display:flex;align-items:center;justify-content:center}
+  .theme-chip{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700}
+  .theme-body{text-align:center;padding:14px 16px 0}
+  .theme-name{font-size:17px;font-weight:700;line-height:1.2}
+  .theme-rule{width:26px;height:2px;margin:7px auto}
+  .theme-tagline{font-size:12.5px;color:#5B6472}
+  .theme-btn{margin:12px 14px 16px;padding:11px;color:#FFFFFF;text-align:center;font-weight:700;font-size:14px;border-radius:8px}
+  .theme-caption{text-align:center;font-size:13px;color:var(--ink-soft)}
+  .theme-caption strong{color:var(--ink)}
+
+  .links-intro{max-width:720px;margin:0 auto;padding:64px 24px 0;text-align:center}
+  .links-intro h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.2vw,34px);line-height:1.15;margin:0}
+  .links-intro p{font-size:16px;color:var(--ink-soft);margin:12px 0 0}
+
+  .link-sets{max-width:1100px;margin:0 auto;padding:28px 24px 0}
+  .link-set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+  .link-set-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06)}
+  .link-set-title{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:12px}
+  .link-set-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .link-set-item{display:flex;align-items:center;justify-content:center;padding:10px 6px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink-soft);font-size:13px;font-weight:500;text-align:center}
+
+  .final-cta{max-width:680px;margin:0 auto;padding:72px 24px 64px;text-align:center}
+  .final-cta h2{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(26px,3.2vw,34px);line-height:1.15;margin:0}
+  .final-cta p{font-size:16px;color:var(--ink-soft);margin:14px 0 24px}
+  .btn-primary{display:inline-block;padding:15px 30px;background:var(--brass);color:#FFFFFF;font-weight:600;font-size:16px;border-radius:10px;text-decoration:none;box-shadow:0 3px 10px rgba(140,101,48,.22);transition:background .18s ease,transform .18s ease}
+  .btn-primary:hover{background:var(--brass-deep);color:#FFFFFF;transform:translateY(-1px)}
+  .back-link{margin-top:16px;font-size:14px}
+
+  footer{text-align:center;padding:26px 24px;border-top:1px solid var(--line)}
+  .site-credit{font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+  <header>
+    <div class="wordmark">Fresh Slate<span class="dot">.</span></div>
+    <nav><a href="/hub-demo">Back to hub</a></nav>
+  </header>
+
+  <section class="intro">
+    <div class="eyebrow"><span class="rule"></span>See other styles<span class="rule"></span></div>
+    <h1>Same template. Your colors, your links.</h1>
+    <p>One color decision reskins the whole page — buttons, accents, highlights. Nothing else moves.</p>
+  </section>
+
+  <section class="themes">
+    <div class="theme-grid">
+      <div class="theme-item">
+        <div class="theme-card">
+          <div class="theme-brand">Fresh Slate<span style="color:#B4823F">.</span></div>
+          <div class="theme-photo" style="background:linear-gradient(160deg,#E8DCCB,#D8CBB6)">
+            <div class="theme-chip" style="background:#F0E4CC;color:#8C6530">FS</div>
+          </div>
+          <div class="theme-body">
+            <div class="theme-name">Doretha C.</div>
+            <div class="theme-rule" style="background:#B4823F"></div>
+            <div class="theme-tagline">Website refreshes · Conyers, GA</div>
+          </div>
+          <div class="theme-btn" style="background:#B4823F">Book Now</div>
+        </div>
+        <div class="theme-caption"><strong>Brass</strong> — warm, editorial, understated luxury</div>
+      </div>
+
+      <div class="theme-item">
+        <div class="theme-card">
+          <div class="theme-brand">Willow &amp; Clay<span style="color:#3E6E5E">.</span></div>
+          <div class="theme-photo" style="background:linear-gradient(160deg,#DCE8E1,#C5D8CC)">
+            <div class="theme-chip" style="background:#DCEAE2;color:#2C5044">NP</div>
+          </div>
+          <div class="theme-body">
+            <div class="theme-name">Nia Park</div>
+            <div class="theme-rule" style="background:#3E6E5E"></div>
+            <div class="theme-tagline">Ceramics &amp; candles · Covington, GA</div>
+          </div>
+          <div class="theme-btn" style="background:#3E6E5E">Book Now</div>
+        </div>
+        <div class="theme-caption"><strong>Forest</strong> — grounded, natural, calm</div>
+      </div>
+
+      <div class="theme-item">
+        <div class="theme-card">
+          <div class="theme-brand">Crown &amp; Comb<span style="color:#5B6FA8">.</span></div>
+          <div class="theme-photo" style="background:linear-gradient(160deg,#DEE2ED,#C9D0E2)">
+            <div class="theme-chip" style="background:#DFE4F2;color:#40507E">DM</div>
+          </div>
+          <div class="theme-body">
+            <div class="theme-name">Dre Mitchell</div>
+            <div class="theme-rule" style="background:#5B6FA8"></div>
+            <div class="theme-tagline">Precision cuts · Lithonia, GA</div>
+          </div>
+          <div class="theme-btn" style="background:#5B6FA8">Book Now</div>
+        </div>
+        <div class="theme-caption"><strong>Indigo</strong> — sharp, precise, professional</div>
+      </div>
+
+      <div class="theme-item">
+        <div class="theme-card">
+          <div class="theme-brand">Forge Fitness<span style="color:#A8512E">.</span></div>
+          <div class="theme-photo" style="background:linear-gradient(160deg,#EDDCD2,#E0C8BA)">
+            <div class="theme-chip" style="background:#F4DFD3;color:#7E3A20">JR</div>
+          </div>
+          <div class="theme-body">
+            <div class="theme-name">Jordan Reed</div>
+            <div class="theme-rule" style="background:#A8512E"></div>
+            <div class="theme-tagline">Personal training · Decatur, GA</div>
+          </div>
+          <div class="theme-btn" style="background:#A8512E">Book Now</div>
+        </div>
+        <div class="theme-caption"><strong>Rust</strong> — bold, energetic, hands-on</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="links-intro">
+    <h2>Links that fit your business</h2>
+    <p>The four link slots aren't locked to any platform. Swap in whatever your clients actually use.</p>
+  </section>
+
+  <section class="link-sets">
+    <div class="link-set-grid">
+      <div class="link-set-card">
+        <div class="link-set-title">The classic</div>
+        <div class="link-set-items">
+          <div class="link-set-item">Instagram</div>
+          <div class="link-set-item">Facebook</div>
+          <div class="link-set-item">Call / Text</div>
+          <div class="link-set-item">Location &amp; Hours</div>
+        </div>
+      </div>
+      <div class="link-set-card">
+        <div class="link-set-title">The seller</div>
+        <div class="link-set-items">
+          <div class="link-set-item">TikTok</div>
+          <div class="link-set-item">LinkedIn</div>
+          <div class="link-set-item">Email</div>
+          <div class="link-set-item">Shop My Products</div>
+        </div>
+      </div>
+      <div class="link-set-card">
+        <div class="link-set-title">The local pro</div>
+        <div class="link-set-items">
+          <div class="link-set-item">Instagram</div>
+          <div class="link-set-item">Read Reviews</div>
+          <div class="link-set-item">Book a Tour</div>
+          <div class="link-set-item">Call / Text</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Like one of these looks?</h2>
+    <p>Your hub can look like this in a day or two.</p>
+    <a href="https://calendly.com/dorethac/30min" class="btn-primary">Book Now</a>
+    <div class="back-link"><a href="/hub-demo">Back to the hub →</a></div>
+  </section>
+
+  <footer>
+    <div class="site-credit">site by <a href="https://freshslateweb.com">Fresh Slate</a></div>
+  </footer>
+</body>
+</html>
