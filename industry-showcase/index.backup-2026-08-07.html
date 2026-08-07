@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Industry Showcase | Fresh Slate</title>
+<meta name="description" content="Live demos, not screenshots — see how Fresh Slate's One-Link Hub and website templates work for businesses like yours.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F3EFE6;--paper-raised:#FFFFFF;--ink:#1B1F2A;--ink-soft:#5B6472;--brass:#B4823F;--brass-tint:#F0E4CC;--brass-deep:#8C6530;--line:#D9D2C2;--font-display:'Playfair Display',serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);font-family:'IBM Plex Sans',sans-serif;line-height:1.6;color:var(--ink)}
+  a{color:var(--brass-deep)}
+  a:hover{color:var(--brass)}
+
+  header{max-width:1100px;margin:0 auto;padding:26px 24px;display:flex;align-items:baseline;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
+  .logo{font-family:var(--font-display);font-size:26px;font-weight:700}
+  .logo .dot{color:var(--brass)}
+  nav{display:flex;gap:26px}
+  nav a{color:var(--ink-soft);text-decoration:none;font-size:15px}
+  nav a:hover{color:var(--ink)}
+
+  .intro{max-width:720px;margin:0 auto;padding:56px 24px 16px;text-align:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--brass-deep)}
+  .eyebrow .rule{width:28px;height:1px;background:var(--brass)}
+  .intro h1{font-family:var(--font-display);font-weight:600;font-size:clamp(34px,4.4vw,48px);line-height:1.12;margin:16px 0 0}
+  .intro p{font-size:17px;color:var(--ink-soft);margin:16px 0 0}
+
+  .showcase{max-width:1100px;margin:0 auto;padding:36px 24px 0}
+  .showcase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .showcase-card{background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:30px;display:flex;flex-direction:column;gap:14px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06)}
+  .showcase-card-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .showcase-card h3{font-family:var(--font-display);font-weight:600;font-size:26px;line-height:1.15;margin:0}
+  .showcase-badge{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-deep);background:var(--brass-tint);padding:3px 10px;border-radius:999px}
+  .showcase-card p{color:var(--ink-soft);font-size:15px;margin:0}
+  .showcase-card p strong{color:var(--ink)}
+  .showcase-cta{display:block;margin-top:auto;padding:14px;background:var(--brass);color:#FFFFFF;text-align:center;font-weight:600;font-size:15px;border-radius:10px;text-decoration:none;box-shadow:0 3px 10px rgba(140,101,48,.22);transition:background .18s ease,transform .18s ease}
+  .showcase-cta:hover{background:var(--brass-deep);color:#FFFFFF;transform:translateY(-1px)}
+  .showcase-cta.disabled{background:var(--line);color:var(--ink-soft);cursor:not-allowed;box-shadow:none}
+  .showcase-cta.disabled:hover{transform:none}
+
+  .closing{max-width:680px;margin:0 auto;padding:56px 24px 64px;text-align:center}
+  .closing p{font-family:var(--font-display);font-size:clamp(19px,2.4vw,24px);line-height:1.45;color:var(--ink);margin:0}
+  .closing em{color:var(--brass-deep);font-style:italic}
+
+  footer{text-align:center;padding:26px 24px;border-top:1px solid var(--line)}
+  footer .credit{font-size:14px;color:var(--ink-soft)}
+  footer .rights{font-size:13px;color:var(--ink-soft);margin-top:4px}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Fresh Slate<span class="dot">.</span></div>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="eyebrow"><span class="rule"></span>Industry showcase<span class="rule"></span></div>
+  <h1>See it working for a business like yours.</h1>
+  <p>Live demos, not screenshots — click around, book something, kick the tires.</p>
+</section>
+
+<section class="showcase">
+  <div class="showcase-grid">
+    <div class="showcase-card">
+      <h3>General Service Business</h3>
+      <p><strong>Best for:</strong> Trainers, tutors, consultants, coaches — solo professionals booking one-on-one appointments.</p>
+      <p><strong>What to look for:</strong> A real, live hub — portfolio, testimonials, and a booking link that reskins instantly to match any brand.</p>
+      <a href="/hub-demo" class="showcase-cta">See the Demo</a>
+    </div>
+    <div class="showcase-card">
+      <h3>Home Services &amp; Trades</h3>
+      <p><strong>Best for:</strong> HVAC, plumbing, electrical, handymen, landscapers — home service pros losing jobs to missed calls.</p>
+      <p><strong>What to look for:</strong> Try booking a diagnostic visit — see how an upfront trip fee protects your fuel and drive-out costs before you even leave the shop.</p>
+      <a href="/trades-demo" class="showcase-cta">See the Demo</a>
+    </div>
+    <div class="showcase-card">
+      <div class="showcase-card-head">
+        <h3>Beauty &amp; Wellness</h3>
+        <span class="showcase-badge">Coming Soon</span>
+      </div>
+      <p><strong>Best for:</strong> Stylists, barbers, estheticians, lash techs — anyone losing money to last-minute no-shows.</p>
+      <p><strong>What to look for:</strong> Automatic deposit collection before they sit in your chair, so a no-show doesn't cost you the whole appointment.</p>
+      <div class="showcase-cta disabled">Coming Soon</div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <p>These are just samples — every Fresh Slate hub is built around <em>your</em> business, <em>your</em> brand, and <em>your</em> links. What you see here is a starting point, not a limit.</p>
+</section>
+
+<footer>
+  <div class="credit">Fresh Slate — website refreshes &amp; one-link hubs</div>
+  <div class="rights">&copy; 2026 Fresh Slate. All rights reserved.</div>
+</footer>
+</body>
+</html>
