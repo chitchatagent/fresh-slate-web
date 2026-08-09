@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jasmine's Chair — Beauty &amp; Wellness Demo | Fresh Slate</title>
+<meta name="description" content="A live example of Fresh Slate's Beauty & Wellness template: online booking with a deposit, a work gallery, and reviews for stylists and salons.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F3EFE6;--paper-raised:#FFFFFF;--ink:#1B1F2A;--ink-soft:#5B6472;
+    --brass:#B4823F;--brass-tint:#F0E4CC;--brass-deep:#8C6530;--line:#D9D2C2;--r-btn:10px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);font-family:'IBM Plex Sans',sans-serif;line-height:1.6;color:var(--ink)}
+  a{color:var(--brass-deep)}
+  .hub{max-width:430px;margin:0 auto;min-height:100vh;background:var(--paper)}
+
+  .top-nav{display:flex;justify-content:center;gap:22px;padding:14px 24px 0}
+  .top-nav a{color:var(--ink-soft);text-decoration:none;font-size:15px}
+  .top-nav a:hover{color:var(--ink)}
+
+  .wordmark{text-align:center;padding:16px 24px 16px;font-family:'Playfair Display',serif;font-size:26px;font-weight:700}
+  .wordmark .dot{color:var(--brass)}
+
+  .hero-full{height:470px;overflow:hidden}
+  .hero-full img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+
+  .identity{text-align:center;padding:22px 24px 0}
+  .identity h1{font-size:30px;font-weight:700;line-height:1.15;margin:0}
+  .identity .rule{width:36px;height:2px;background:var(--brass);margin:10px auto}
+  .identity .subtitle{font-size:15px;color:var(--ink-soft);margin:0}
+
+  .btn-primary{display:block;margin:18px 20px 0;padding:17px;background:var(--brass);color:#FFFFFF;text-align:center;font-weight:700;font-size:18px;letter-spacing:.02em;border-radius:var(--r-btn);text-decoration:none;box-shadow:0 3px 10px rgba(140,101,48,.22);transition:background .18s ease, box-shadow .18s ease, transform .18s ease;border:none;width:calc(100% - 40px);cursor:pointer;font-family:'IBM Plex Sans',sans-serif}
+  .btn-primary:hover{background:var(--brass-deep);transform:translateY(-1px);box-shadow:0 6px 18px rgba(140,101,48,.32)}
+
+  .divider{display:flex;align-items:center;gap:12px;margin:40px 20px 16px}
+  .divider .line{flex:1;height:1px;background:var(--line)}
+  .divider .label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+
+  .about-text{font-size:15px;line-height:1.7;color:var(--ink);text-align:center;margin:0;padding:0 24px}
+
+  .work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:0 20px}
+  .work-item{aspect-ratio:1;min-width:0;overflow:hidden;border-radius:6px}
+  .work-item img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .ig-callout{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 20px 0;padding:15px 18px;border:1px solid var(--brass);border-radius:var(--r-btn);background:var(--paper-raised);color:var(--ink);text-decoration:none;box-shadow:0 1px 3px rgba(27,31,42,.06);transition:background .18s ease, box-shadow .18s ease}
+  .ig-callout:hover{background:var(--brass-tint);color:var(--ink);box-shadow:0 3px 8px rgba(27,31,42,.10)}
+  .ig-callout .ig-text{display:flex;flex-direction:column}
+  .ig-callout .ig-title{font-size:15px;font-weight:600}
+  .ig-callout .ig-sub{font-size:13px;color:var(--ink-soft)}
+
+  .services-card{display:flex;flex-direction:column;margin:0 20px;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:8px 20px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06)}
+  .service-row{display:flex;flex-direction:column;gap:4px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .service-row:last-child{border-bottom:none}
+  .service-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .service-name{font-size:15px;font-weight:600}
+  .service-cta{font-size:13px;font-weight:600;color:var(--brass-deep);text-decoration:none;white-space:nowrap}
+  .service-cta:hover{color:var(--brass)}
+  .service-desc{font-size:13.5px;line-height:1.55;color:var(--ink-soft);margin:0}
+
+  .form-note-text{font-size:14px;color:var(--ink-soft);text-align:center;margin:0 0 14px;padding:0 24px}
+  .callback-card{margin:0 20px;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06);display:flex;flex-direction:column;gap:12px}
+  .field-label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .field-label input,.field-label select{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--paper);font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:var(--ink);outline:none}
+  .field-label input:focus,.field-label select:focus{border-color:var(--brass)}
+  .deposit-banner{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:var(--brass-tint);border-radius:8px}
+  .deposit-banner .fee{font-size:13px;color:var(--brass-deep);font-weight:600}
+  .deposit-banner .paid{font-size:12px;color:var(--brass-deep)}
+  .btn-submit{margin-top:4px;padding:15px;background:var(--brass);color:#FFFFFF;border:none;text-align:center;font-family:'IBM Plex Sans',sans-serif;font-weight:700;font-size:16px;letter-spacing:.02em;border-radius:var(--r-btn);cursor:pointer;box-shadow:0 3px 10px rgba(140,101,48,.22);transition:background .18s ease}
+  .btn-submit:hover{background:var(--brass-deep)}
+  .form-note{font-size:12px;color:var(--ink-soft);text-align:center}
+
+  .faq-list{display:flex;flex-direction:column;gap:8px;margin:0 20px}
+  .faq-item{background:var(--paper-raised);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 3px rgba(27,31,42,.06);overflow:hidden}
+  .faq-question{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:14px 16px;background:none;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;font-weight:600;color:var(--ink);text-align:left}
+  .faq-chevron{color:var(--brass);font-size:18px;font-weight:400;flex:none;transition:transform .2s ease}
+  .faq-item.open .faq-chevron{transform:rotate(45deg)}
+  .faq-answer{display:none;padding:0 16px 14px;font-size:14px;line-height:1.6;color:var(--ink-soft)}
+  .faq-item.open .faq-answer{display:block}
+
+  .notice{display:flex;align-items:flex-start;gap:10px;margin:24px 20px 0;padding:14px 16px;background:var(--brass-tint);border-radius:var(--r-btn)}
+  .notice p{font-size:13px;line-height:1.55;color:var(--brass-deep);margin:0}
+
+  .trust-single{padding:10px 20px 0}
+  .trust-card{display:flex;flex-direction:column;align-items:center;gap:8px;padding:18px 12px;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06);text-decoration:none;color:var(--ink);transition:background .18s ease,border-color .18s ease}
+  a.trust-card:hover{background:var(--brass-tint);border-color:var(--brass)}
+  .trust-title{font-size:14px;font-weight:600;text-align:center;line-height:1.3}
+  .trust-sub{font-size:12px;color:var(--ink-soft);text-align:center}
+  .trust-sub.link{color:var(--brass-deep)}
+  .stars{display:flex;gap:2px}
+
+  .testimonial-card{margin:28px 20px 0;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:22px 22px 16px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06);text-align:center;touch-action:pan-y}
+  .testimonial-mark{font-size:34px;line-height:1;color:var(--brass);font-weight:700}
+  .testimonial-quote{font-size:15px;line-height:1.55;margin:6px 0 0;min-height:70px}
+  .testimonial-name{font-size:13px;font-weight:600;color:var(--ink-soft);margin-top:10px}
+
+  .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+  .carousel-dot{width:8px;height:8px;border-radius:999px;border:none;padding:0;background:var(--line);cursor:pointer;transition:background .25s ease,width .25s ease}
+  .carousel-dot.active{background:var(--brass);width:22px}
+
+  .link-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:24px 20px 0}
+  .link-tile{display:flex;align-items:center;justify-content:center;padding:12px;border:1px solid var(--line);border-radius:var(--r-btn);background:var(--paper-raised);color:var(--ink-soft);font-size:14px;font-weight:500;text-decoration:none;box-shadow:0 1px 3px rgba(27,31,42,.06);transition:background .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .link-tile:hover{background:var(--brass-tint);color:var(--ink);border-color:var(--brass);box-shadow:0 3px 8px rgba(27,31,42,.10)}
+
+  .hours-card{margin:12px 20px 0;background:var(--paper-raised);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 1px 2px rgba(27,31,42,.04),0 6px 18px rgba(27,31,42,.06)}
+  .hours-label{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+  .hours-address{font-size:14px;color:var(--ink);margin-top:8px}
+  .hours-note{font-size:12.5px;color:var(--ink-soft);margin-top:2px}
+  .hours-list{display:flex;flex-direction:column;margin-top:12px;border-top:1px solid var(--line)}
+  .hours-row{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .hours-day{color:var(--ink-soft);font-weight:500}
+  .hours-time{color:var(--ink)}
+  .hours-time.closed{color:var(--ink-soft)}
+  .btn-hours{display:block;margin-top:16px;padding:14px;background:var(--brass);color:#FFFFFF;text-align:center;font-weight:700;font-size:16px;letter-spacing:.02em;border-radius:var(--r-btn);text-decoration:none;box-shadow:0 3px 10px rgba(140,101,48,.22);transition:background .18s ease,box-shadow .18s ease,transform .18s ease}
+  .btn-hours:hover{background:var(--brass-deep);transform:translateY(-1px);box-shadow:0 6px 18px rgba(140,101,48,.32)}
+
+  .addon-badges{display:flex;justify-content:center;gap:8px;margin-top:24px;padding:0 20px}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:var(--brass-tint);color:var(--brass-deep);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px}
+
+  .site-credit{text-align:center;font-size:12px;color:var(--ink-soft);padding:22px 0 26px}
+  .site-credit a{color:var(--ink-soft)}
+</style>
+</head>
+<body>
+<div class="hub">
+
+  <nav class="top-nav">
+    <a href="/">Home</a>
+    <a href="/#contact">Contact</a>
+    <a href="/industry-showcase">Industry Demos</a>
+  </nav>
+  <div class="wordmark">Jasmine's Chair<span class="dot">.</span></div>
+
+  <div class="hero-full">
+    <img src="/assets/jasmine/jasmine-hero.webp" alt="Jasmine Price, hairstylist">
+  </div>
+
+  <div class="identity">
+    <h1>Jasmine Price</h1>
+    <div class="rule"></div>
+    <p class="subtitle">Hairstylist · Conyers, GA</p>
+  </div>
+
+  <a href="#callback-form" class="btn-primary" data-cta="book">Book Appointment &amp; Deposit</a>
+
+  <div class="divider"><div class="line"></div><div class="label">Who We Are</div><div class="line"></div></div>
+  <p class="about-text">I'm Jasmine — book your spot online, no back-and-forth over DMs. A small deposit holds your appointment, so my chair stays booked and you stay confident your spot is secure. No ghosting, no wasted time, just great hair.</p>
+
+  <div class="divider"><div class="line"></div><div class="label">See My Work</div><div class="line"></div></div>
+  <div class="work-grid">
+    <div class="work-item"><img src="/assets/jasmine/jc-work-1.webp" alt="Style 1"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-2.webp" alt="Style 2"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-3.webp" alt="Style 3"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-4.webp" alt="Style 4"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-5.webp" alt="Style 5"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-6.webp" alt="Style 6"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-7.webp" alt="Style 7"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-8.webp" alt="Style 8"></div>
+    <div class="work-item"><img src="/assets/jasmine/jc-work-9.webp" alt="Style 9"></div>
+  </div>
+
+  <a href="https://www.instagram.com" class="ig-callout">
+    <span class="ig-text"><span class="ig-title">See real transformations →</span><span class="ig-sub">Explore the gallery on Instagram</span></span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="var(--brass-deep)" stroke="none"></circle></svg>
+  </a>
+
+  <div class="divider"><div class="line"></div><div class="label">Why Clients Keep Coming Back</div><div class="line"></div></div>
+
+  <div class="testimonial-card" id="testimonial-card">
+    <div class="testimonial-mark">&ldquo;</div>
+    <p class="testimonial-quote" id="t-quote"></p>
+    <div class="testimonial-name" id="t-name"></div>
+    <div class="dots" id="t-dots"></div>
+  </div>
+
+  <div class="trust-single">
+    <a href="https://www.google.com/maps" class="trust-card">
+      <div class="stars">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--brass)"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--brass)"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--brass)"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--brass)"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="var(--brass)"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"></path></svg>
+      </div>
+      <div class="trust-title">Google Reviews</div>
+      <div class="trust-sub link">Read our reviews →</div>
+    </a>
+  </div>
+
+  <div class="divider"><div class="line"></div><div class="label">Services</div><div class="line"></div></div>
+  <div class="services-card" id="services-card">
+    <div class="service-row">
+      <div class="service-top">
+        <span class="service-name">Silk Press</span>
+        <a href="#callback-form" class="service-cta" data-cta="book">Book →</a>
+      </div>
+      <p class="service-desc">Smooth, heat-styled finish that lasts. Deposit required to book.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-top">
+        <span class="service-name">Box Braids / Knotless Braids</span>
+        <a href="#callback-form" class="service-cta" data-cta="book">Book →</a>
+      </div>
+      <p class="service-desc">Classic or knotless, any length. Deposit required to book.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-top">
+        <span class="service-name">Sew-In Weave</span>
+        <a href="#callback-form" class="service-cta" data-cta="book">Book →</a>
+      </div>
+      <p class="service-desc">Full sew-in with leave-out or closure. Deposit required to book.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-top">
+        <span class="service-name">Loc Maintenance</span>
+        <a href="#callback-form" class="service-cta" data-cta="book">Book →</a>
+      </div>
+      <p class="service-desc">Retwist, style, and care for healthy locs. Deposit required to book.</p>
+    </div>
+    <div class="service-row">
+      <div class="service-top">
+        <span class="service-name">New Client Consultation</span>
+        <a href="#callback-form" class="service-cta" data-cta="book">Book →</a>
+      </div>
+      <p class="service-desc">Free 15 minutes to talk hair goals before your first visit.</p>
+    </div>
+  </div>
+
+  <div id="callback-form-section">
+    <div class="divider" id="callback-form"><div class="line"></div><div class="label">Skip the DMs. Book Instantly.</div><div class="line"></div></div>
+    <p class="form-note-text">No back-and-forth over DMs. Pick your service, lock in your time, and your deposit secures the chair.</p>
+    <form class="callback-card" id="callback-form-el">
+      <label class="field-label">Name
+        <input name="cbName" required placeholder="Your name">
+      </label>
+      <label class="field-label">Phone Number
+        <input name="cbPhone" required type="tel" placeholder="(000) 000-0000">
+      </label>
+      <label class="field-label">Which service?
+        <select name="cbService">
+          <option value="Silk Press">Silk Press</option>
+          <option value="Box Braids / Knotless Braids">Box Braids / Knotless Braids</option>
+          <option value="Sew-In Weave">Sew-In Weave</option>
+          <option value="Loc Maintenance">Loc Maintenance</option>
+          <option value="New Client Consultation">New Client Consultation</option>
+          <option value="Something else">Something else</option>
+        </select>
+      </label>
+      <label class="field-label">Preferred day &amp; time
+        <select name="cbWindow">
+          <option value="This week — morning">This week — morning</option>
+          <option value="This week — afternoon">This week — afternoon</option>
+          <option value="This week — evening">This week — evening</option>
+          <option value="Saturday">Saturday</option>
+          <option value="Next week — flexible">Next week — flexible</option>
+        </select>
+      </label>
+      <div class="deposit-banner">
+        <span class="fee">$25 booking deposit — holds your chair</span>
+        <span class="paid">Paid at booking →</span>
+      </div>
+      <button type="submit" class="btn-submit" id="cb-submit-btn">Book Appointment &amp; Deposit</button>
+      <div class="form-note" id="cb-note">Your $25 deposit is applied toward your service — secure checkout powered by Square.</div>
+    </form>
+  </div>
+
+  <div class="divider"><div class="line"></div><div class="label">Common Questions</div><div class="line"></div></div>
+  <div class="faq-list" id="faq-list"></div>
+
+  <div class="notice">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brass-deep)" stroke-width="2.2" style="flex:none;margin-top:2px"><rect x="4" y="10.5" width="16" height="10" rx="2" fill="var(--brass-deep)" stroke="none"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+    <p><strong>No-show policy:</strong> Secure checkout powered by Square. A $25 booking deposit holds your chair — applied toward your service.</p>
+  </div>
+
+  <div class="hours-card">
+    <div class="hours-label">Location &amp; Hours</div>
+    <div class="hours-address">Conyers, GA</div>
+    <div class="hours-note">Exact address provided upon booking confirmation</div>
+    <div class="hours-list">
+      <div class="hours-row"><span class="hours-day">Monday</span><span class="hours-time closed">Closed</span></div>
+      <div class="hours-row"><span class="hours-day">Tuesday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Wednesday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Thursday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Friday</span><span class="hours-time">10:00 AM – 7:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Saturday</span><span class="hours-time">9:00 AM – 4:00 PM</span></div>
+      <div class="hours-row"><span class="hours-day">Sunday</span><span class="hours-time closed">Closed</span></div>
+    </div>
+    <a href="#callback-form" class="btn-hours" data-cta="book">Book Appointment &amp; Deposit</a>
+  </div>
+
+  <div class="link-grid">
+    <a href="https://www.instagram.com" class="link-tile">Instagram</a>
+    <a href="https://www.facebook.com" class="link-tile">Facebook</a>
+    <a href="tel:+14702073594" class="link-tile">Call / Text</a>
+    <a href="https://square.link/u/5pmPwNa1" class="link-tile">Pay My Balance</a>
+  </div>
+
+  <div class="addon-badges">
+    <span class="badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="10.5" width="16" height="10" rx="2" fill="currentColor" stroke="none"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Add More Pages</span>
+    <span class="badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="4" y="10.5" width="16" height="10" rx="2" fill="currentColor" stroke="none"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Sell Products</span>
+  </div>
+
+  <div class="site-credit">site by <a href="/">Fresh Slate</a></div>
+</div>
+
+<script>
+(function(){
+  // Unified booking logic — mirrors the "Booking Tool URL" field from the source
+  // component. Blank means "no external tool configured": every Book CTA points
+  // at the internal form and the form stays on the page. Filling this in with a
+  // Square / StyleSeat URL switches every Book CTA to that link and hides the
+  // internal form section.
+  var BOOKING_TOOL_URL = "https://book.squareup.com/appointments/bkrn09xy00s4nz/location/LZTCEMF5AFFRA/services";
+
+  var externalBooking = !!BOOKING_TOOL_URL.trim();
+  var bookHref = externalBooking ? BOOKING_TOOL_URL.trim() : '#callback-form';
+
+  document.querySelectorAll('[data-cta="book"]').forEach(function(el){
+    el.setAttribute('href', bookHref);
+    if (externalBooking) {
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+    } else {
+      el.removeAttribute('target');
+      el.removeAttribute('rel');
+    }
+  });
+
+  var formSection = document.getElementById('callback-form-section');
+  if (externalBooking) {
+    formSection.style.display = 'none';
+  }
+
+  // FAQ accordion — one open at a time, first one open by default
+  var faqs = [
+    {q:"Do you take walk-ins?", a:"No — by appointment only. Booking online with a deposit is the only way to guarantee your spot in the chair."},
+    {q:"How much is a deposit, and is it refundable?", a:"$25, and it goes toward your service. It's refundable if you cancel at least 48 hours ahead — after that it holds the chair."},
+    {q:"What if I need to reschedule?", a:"Reschedule up to 24 hours before your appointment and your deposit moves with you — no penalty, no re-booking fee."},
+    {q:"How long does a full color/silk press take?", a:"Plan on 2–3 hours for color or balayage and 1.5–2 hours for a silk press, depending on length and density."}
+  ];
+  var faqListEl = document.getElementById('faq-list');
+  var openIndex = 0;
+  faqs.forEach(function(f, i){
+    var item = document.createElement('div');
+    item.className = 'faq-item' + (i === openIndex ? ' open' : '');
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'faq-question';
+    btn.innerHTML = '<span>' + f.q + '</span><span class="faq-chevron">+</span>';
+    var answer = document.createElement('div');
+    answer.className = 'faq-answer';
+    answer.textContent = f.a;
+    btn.addEventListener('click', function(){
+      var wasOpen = item.classList.contains('open');
+      Array.prototype.forEach.call(faqListEl.children, function(el){ el.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
+    });
+    item.appendChild(btn);
+    item.appendChild(answer);
+    faqListEl.appendChild(item);
+  });
+
+  // Booking form — mailto handoff, matches source demo behavior
+  if (!externalBooking) {
+    var form = document.getElementById('callback-form-el');
+    var submitBtn = document.getElementById('cb-submit-btn');
+    var noteEl = document.getElementById('cb-note');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var f = form.elements;
+      var to = 'hello@jasmineschair.example';
+      var body = 'Booking request\n\nName: ' + f.cbName.value + '\nPhone: ' + f.cbPhone.value + '\nService: ' + f.cbService.value + '\nPreferred day & time: ' + f.cbWindow.value;
+      window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('Booking request — ' + f.cbName.value) + '&body=' + encodeURIComponent(body);
+      submitBtn.textContent = 'Booking request sent ✓';
+      noteEl.textContent = "You'll get a confirmation shortly. See you in the chair.";
+    });
+  }
+
+  // Testimonial carousel
+  var testimonials = [
+    {quote:"Best silk press in Rockdale!", name:"Keisha M."},
+    {quote:"My color has never looked this healthy.", name:"Renee T."},
+    {quote:"Booked online in two minutes, no back-and-forth texting.", name:"Alyssa W."}
+  ];
+  var tIndex = 0;
+  var tQuoteEl = document.getElementById('t-quote');
+  var tNameEl = document.getElementById('t-name');
+  var tDotsEl = document.getElementById('t-dots');
+  var tTimer;
+
+  function renderTestimonial(){
+    var t = testimonials[tIndex];
+    tQuoteEl.textContent = t.quote;
+    tNameEl.textContent = '— ' + t.name;
+    Array.prototype.forEach.call(tDotsEl.children, function(dot, i){
+      dot.classList.toggle('active', i === tIndex);
+    });
+  }
+  function goTestimonial(i){
+    tIndex = ((i % testimonials.length) + testimonials.length) % testimonials.length;
+    renderTestimonial();
+    restartTimer();
+  }
+  function restartTimer(){
+    clearInterval(tTimer);
+    tTimer = setInterval(function(){ goTestimonial(tIndex + 1); }, 5000);
+  }
+  testimonials.forEach(function(_, i){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'carousel-dot';
+    btn.setAttribute('aria-label', 'Show testimonial ' + (i + 1));
+    btn.addEventListener('click', function(){ goTestimonial(i); });
+    tDotsEl.appendChild(btn);
+  });
+  renderTestimonial();
+  restartTimer();
+
+  var tCard = document.getElementById('testimonial-card');
+  var tTouchX = 0;
+  tCard.addEventListener('touchstart', function(e){ tTouchX = e.touches[0].clientX; }, {passive:true});
+  tCard.addEventListener('touchend', function(e){
+    var dx = e.changedTouches[0].clientX - tTouchX;
+    if (Math.abs(dx) > 40) goTestimonial(tIndex + (dx < 0 ? 1 : -1));
+  });
+})();
+</script>
+</body>
+</html>
